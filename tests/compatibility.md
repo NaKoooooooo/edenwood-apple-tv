@@ -50,7 +50,21 @@ Mêmes conditions (Chromium, Windows 11, serveur HTTP local, 1920 × 1080 puis 1
 | Mise à l'échelle 1280 × 720 | OK — facteur 0,667, mise en page identique |
 | Aucune erreur console | OK |
 
-**Non testé :** le comportement réel sur le téléviseur. Aucune opération n'a été lancée sur la TV.
+### Premier passage sur le téléviseur (version 1.2.0)
+
+Constat rapporté par l'utilisateur : la navigation se fait **au curseur**, lentement. Le navigateur
+VIDAA de ce firmware intercepte donc les touches directionnelles pour son pointeur et ne les
+transmet pas à la page. Conséquences et réponse apportée :
+
+* L'interface accepte désormais le **survol** comme sélection et le **clic** comme validation :
+  elle reste pleinement utilisable au curseur, même si c'est moins confortable.
+* Au bout de 9 secondes sans aucune touche reçue mais avec un curseur actif, un message explique
+  la situation et où chercher l'option à désactiver.
+* **Reste à confirmer** avec `diagnostic.html` : si aucun code ne s'affiche à l'appui des flèches,
+  le mode curseur est bien la cause ; si des codes s'affichent, la navigation clavier fonctionne
+  et seul le pointeur gêne.
+
+**Non testé :** le reste du comportement réel sur le téléviseur. Aucune opération n'a été lancée sur la TV.
 
 ---
 
@@ -97,7 +111,7 @@ Ouvrez **`diagnostic.html`** sur le téléviseur et appuyez sur chaque touche.
 | Code de la touche **Exit** | Aucun standard | Relever et ajouter à `touches.retour` ou `touches.accueil` |
 | Codes des **touches de couleur** (403-406) | Codes HbbTV ; le navigateur VIDAA peut les intercepter avant la page | Relever ; si rien ne s'affiche, la touche est consommée par le système |
 | Touche **Accueil (Home)** | Très probablement interceptée par le système (elle quitte le navigateur) | Comportement normal, aucune action possible |
-| **Flèches consommées par le navigateur** | Certains navigateurs TV utilisent les flèches pour un curseur à l'écran | Si le curseur apparaît, désactiver le mode pointeur dans le navigateur, ou utiliser la souris/pointeur |
+| **Flèches consommées par le navigateur** | **Constaté sur ce téléviseur** : le navigateur VIDAA garde les flèches pour déplacer un curseur à l'écran, la page ne les reçoit pas | Chercher *Curseur* / *Pointeur* / *Mode souris* dans le menu du navigateur et le désactiver. Depuis la version 1.2.0, l'interface reste utilisable au curseur : le survol sélectionne et le clic active |
 | **Support de `localStorage`** | Peut être désactivé en navigation privée ou restreint par le firmware | Réglages → Système → « Stockage local » indique l'état réel |
 | **Polices** | Helvetica Neue / Arial peuvent être absentes ; repli `sans-serif` | Vérifier visuellement |
 | **Rendu des SVG** | Très largement supporté, mais un firmware ancien peut mal gérer `dominant-baseline` | Si les lettres des icônes sont mal centrées, remplacer les SVG par des PNG |

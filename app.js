@@ -1107,12 +1107,12 @@
   }
 
   var toastTimer = null;
-  function notifier(texte) {
+  function notifier(texte, duree) {
     var t = id('toast');
     id('toast-texte').innerHTML = texte;
     t.removeAttribute('hidden');
     if (toastTimer) { window.clearTimeout(toastTimer); }
-    toastTimer = window.setTimeout(function () { t.setAttribute('hidden', 'hidden'); }, 4200);
+    toastTimer = window.setTimeout(function () { t.setAttribute('hidden', 'hidden'); }, duree || 4200);
   }
 
   /* =========================================================
@@ -1259,6 +1259,7 @@
 
   function surTouche(ev) {
     var code = ev.keyCode || ev.which || 0;
+    toucheRecue = true;
     /* toute action relance le compte à rebours : la bannière ne change
        jamais pendant que l'utilisateur manipule la télécommande */
     planifierHero();
@@ -1335,21 +1336,65 @@
     }
   }
 
-  /* Souris / tactile : pratique pour les tests sur Windows */
-  function surClic(ev) {
-    var t = ev.target, n = t;
-    while (n && n !== document.body) {
-      if (hasClass(n, 'focusable')) {
-        for (var r = 0; r < lignes.length; r++) {
-          for (var i = 0; i < lignes[r].items.length; i++) {
-            if (lignes[r].items[i] === n) { focusLigne(r, i); actionSurElement(n); return; }
-          }
-        }
-        actionSurElement(n);
-        return;
+  /* =========================================================
+     POINTEUR — mode curseur du navigateur VIDAA
+     ---------------------------------------------------------
+     Certains firmwares VIDAA interceptent les flèches pour
+     déplacer un curseur à l'écran : la page ne reçoit alors
+     aucun code de touche. L'interface doit rester utilisable
+     dans ce mode : le survol sélectionne, le clic active.
+     ========================================================= */
+  var toucheRecue = false, pointeurVu = false;
+
+  function positionDe(e) {
+    var r, i;
+    for (r = 0; r < lignes.length; r++) {
+      for (i = 0; i < lignes[r].items.length; i++) {
+        if (lignes[r].items[i] === e) { return { r: r, i: i }; }
       }
+    }
+    return null;
+  }
+
+  function cibleFocusable(ev) {
+    var n = (ev && (ev.target || ev.srcElement)) || null;
+    while (n && n !== document.body) {
+      if (n.className !== undefined && hasClass(n, 'focusable')) { return n; }
       n = n.parentNode;
     }
+    return null;
+  }
+
+  /* Le survol sélectionne : le curseur pilote alors la même mise en avant
+     que la télécommande, sans avoir à cliquer pour voir où l'on est. */
+  function surSurvol(ev) {
+    var n = cibleFocusable(ev);
+    if (!n || n === elementFocus()) { return; }
+    var p = positionDe(n);
+    if (p) { focusLigne(p.r, p.i); }
+  }
+
+  function surMouvement() {
+    pointeurVu = true;
+  }
+
+  function surClic(ev) {
+    var n = cibleFocusable(ev);
+    if (!n) { return; }
+    var p = positionDe(n);
+    if (p) { focusLigne(p.r, p.i); }
+    actionSurElement(n);
+  }
+
+  /* Au bout de quelques secondes sans aucune touche reçue mais avec un
+     curseur actif, on explique la situation plutôt que de laisser
+     l'utilisateur croire que l'interface est lente. */
+  function verifierModeCurseur() {
+    if (toucheRecue || !pointeurVu) { return; }
+    notifier('Le navigateur de votre téléviseur est en <b>mode curseur</b> : il garde les flèches ' +
+      'pour déplacer le pointeur et la page ne les reçoit pas.<br>Cherchez <b>Curseur</b>, ' +
+      '<b>Pointeur</b> ou <b>Mode souris</b> dans le menu du navigateur pour le désactiver. ' +
+      'En attendant, le survol sélectionne et OK valide.', 14000);
   }
 
   /* =========================================================
@@ -1376,12 +1421,16 @@
       document.addEventListener('keydown', surTouche, false);
       document.addEventListener('keyup', surRelache, false);
       document.addEventListener('click', surClic, false);
+      document.addEventListener('mouseover', surSurvol, false);
+      document.addEventListener('mousemove', surMouvement, false);
       window.addEventListener('resize', ajusterEchelle, false);
       window.addEventListener('online', majReseau, false);
       window.addEventListener('offline', majReseau, false);
     } else if (document.attachEvent) {
       document.attachEvent('onkeydown', function () { surTouche(window.event); });
       document.attachEvent('onkeyup', function () { surRelache(window.event); });
+      document.attachEvent('onmouseover', function () { surSurvol(window.event); });
+      document.attachEvent('onmousemove', surMouvement);
       document.attachEvent('onclick', function () { surClic(window.event); });
     }
 
@@ -1396,6 +1445,8 @@
       window.setTimeout(function () { d.setAttribute('hidden', 'hidden'); }, 450);
       removeClass(document.body, 'chargement');
     }, 520);
+
+    window.setTimeout(verifierModeCurseur, 9000);
 
     if (!Stockage.disponible()) {
       window.setTimeout(function () {

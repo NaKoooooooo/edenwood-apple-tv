@@ -62,6 +62,20 @@ Sinon                    → fenêtre « Quitter l'interface ? »
 L'interface ne peut pas fermer le navigateur : la dernière fenêtre explique d'utiliser
 la touche Accueil ou Exit du téléviseur.
 
+## 3 bis. Mode curseur du navigateur VIDAA
+
+Si le navigateur affiche un pointeur à l'écran, il garde les flèches pour lui et la page ne reçoit
+aucun code de touche. L'interface le détecte et l'explique au bout de neuf secondes.
+
+Dans ce mode, elle reste utilisable :
+
+* **survol** d'une carte → elle est sélectionnée, exactement comme à la télécommande ;
+* **clic** → activation.
+
+Pour retrouver la navigation directionnelle, cherchez *Curseur*, *Pointeur* ou *Mode souris* dans
+le menu du navigateur VIDAA et désactivez-le. L'emplacement du réglage dépend de la version du
+firmware.
+
 ## 4. Repères visuels du focus
 
 * agrandissement léger (`scale 1.05` à `1.07`) ;

@@ -12,7 +12,7 @@
 var EDENWOOD = {
 
   /* ---------- Identité du produit ---------- */
-  version: '1.1.0',
+  version: '1.2.0',
   build: '2026-11-26',
   productName: 'EDENWOOD APPLE TV',
   productShort: 'Edenwood',
