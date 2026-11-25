@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 630" width="1920" height="630" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="mur" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2029" stop-opacity="1"/><stop offset="1" stop-color="#120d14" stop-opacity="1"/></linearGradient><linearGradient id="tapis" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a1f26" stop-opacity="1"/><stop offset="1" stop-color="#150a0e" stop-opacity="1"/></linearGradient><radialGradient id="lampe" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffd9a0" stop-opacity="0.8"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></radialGradient>
+<radialGradient id="vign" cx="0.64" cy="0.40" r="0.9">
+  <stop offset="0.5" stop-color="#000000" stop-opacity="0"/>
+  <stop offset="1" stop-color="#000000" stop-opacity="0.45"/>
+</radialGradient>
+</defs>
+<rect width="1920" height="630" fill="url(#mur)"/><path d="M0 0 L691 290 L0 630 Z" fill="#1d1620"/><path d="M1920 0 L1229 290 L1920 630 Z" fill="#241b27"/><path d="M0 630 L691 378 L1229 378 L1920 630 Z" fill="url(#tapis)"/><rect x="106" y="191" width="211" height="214" fill="#120c12"/><rect x="1603" y="191" width="211" height="214" fill="#150e15"/><rect x="307" y="213" width="163" height="167" fill="#120c12"/><rect x="1450" y="213" width="163" height="167" fill="#150e15"/><rect x="509" y="235" width="115" height="120" fill="#120c12"/><rect x="1296" y="235" width="115" height="120" fill="#150e15"/><circle cx="960" cy="290" r="107" fill="url(#lampe)"/><rect x="878" y="236" width="163" height="107" fill="#0a070a"/><rect x="878" y="335" width="163" height="4" fill="#ffd9a0" fill-opacity="0.85"/><rect x="1012" y="288" width="3" height="8" fill="#ffd9a0" fill-opacity="0.5"/>
+<rect width="1920" height="630" fill="url(#vign)"/>
+</svg>

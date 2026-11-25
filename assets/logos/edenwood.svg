@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 88" width="560" height="88">
+<defs>
+  <linearGradient id="g" x1="0" y1="0" x2="0.9" y2="1">
+    <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#9fadc0"/>
+  </linearGradient>
+</defs>
+<g fill="none" stroke="url(#g)" stroke-width="4" stroke-linecap="square">
+  <path d="M14 66 L14 22 L46 22"/><path d="M14 44 L40 44"/>
+</g>
+<text x="64" y="52" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="34" letter-spacing="10"
+      fill="url(#g)" font-weight="200">EDENWOOD</text>
+<text x="66" y="76" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12.5" letter-spacing="7.5"
+      fill="#7b8698" font-weight="400">APPLE TV</text>
+</svg>

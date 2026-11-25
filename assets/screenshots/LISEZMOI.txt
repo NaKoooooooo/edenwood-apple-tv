@@ -1,0 +1,10 @@
+Dossier prevu pour vos captures d'ecran.
+
+Sous Windows : touche Impr. ecran, ou Win+Maj+S (outil Capture d'ecran),
+puis enregistrez ici au format PNG ou JPEG.
+
+Suggestions de captures utiles :
+  accueil.png        - section A la une
+  applications.png   - section Applications
+  reglages.png       - page Reglages
+  tv-reel.jpg        - photo de l'ecran du televiseur (preuve de test reel)

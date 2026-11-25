@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Edenwood Apple TV</title>
+<meta name="viewport" content="width=1920, initial-scale=1">
+<meta name="description" content="Interface Smart TV Edenwood Apple TV pour navigateur VIDAA.">
+<meta name="theme-color" content="#05070b">
+<link rel="icon" href="assets/logos/edenwood.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="chargement">
+
+<!-- Bibliothèque d'icônes vectorielles — créées pour ce projet -->
+<svg class="svg-defs" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <symbol id="i-reglages" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3.1"/>
+      <path d="M19.3 13.5a7.7 7.7 0 0 0 0-3l1.9-1.4-1.9-3.3-2.3 1a7.4 7.4 0 0 0-2.6-1.5L13.9 3h-3.8l-.5 2.3a7.4 7.4 0 0 0-2.6 1.5l-2.3-1-1.9 3.3 1.9 1.4a7.7 7.7 0 0 0 0 3l-1.9 1.4 1.9 3.3 2.3-1a7.4 7.4 0 0 0 2.6 1.5l.5 2.3h3.8l.5-2.3a7.4 7.4 0 0 0 2.6-1.5l2.3 1 1.9-3.3z"/>
+    </symbol>
+    <symbol id="i-lecture" viewBox="0 0 24 24"><path d="M8 5.1v13.8L19.2 12z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4.2a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8zM13.4 18h-2.8v-7.3h2.8z"/></symbol>
+    <symbol id="i-etoile" viewBox="0 0 24 24"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5 6.1 20.6l1.2-6.5L2.5 9.5l6.6-.9z"/></symbol>
+    <symbol id="i-etoile-vide" viewBox="0 0 24 24">
+      <path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5 6.1 20.6l1.2-6.5L2.5 9.5l6.6-.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-fleche" viewBox="0 0 24 24"><path d="M9.3 4.6L16.7 12l-7.4 7.4-1.9-1.9L12.9 12 7.4 6.5z"/></symbol>
+    <symbol id="i-reseau" viewBox="0 0 24 24">
+      <path d="M12 3.4a8.6 8.6 0 1 0 0 17.2 8.6 8.6 0 0 0 0-17.2zm0 1.6c1 0 2.2 1.8 2.7 4.4H9.3C9.8 6.8 11 5 12 5zM5.2 12c0-.7.1-1.3.3-2h3a18 18 0 0 0 0 4h-3a7 7 0 0 1-.3-2zm1 3.6h2.5c.3 1.1.7 2 1.1 2.8a6.9 6.9 0 0 1-3.6-2.8zm2.5-7.2H6.2A6.9 6.9 0 0 1 9.8 5.6c-.4.8-.8 1.7-1.1 2.8zM12 19c-1 0-2.2-1.8-2.7-4.4h5.4C14.2 17.2 13 19 12 19zm2.9-6.1H9.1a16 16 0 0 1 0-1.8h5.8a16 16 0 0 1 0 1.8zm.8 6.1c.4-.8.8-1.7 1.1-2.8h2.5a6.9 6.9 0 0 1-3.6 2.8zm1.1-9.6c-.3-1.1-.7-2-1.1-2.8a6.9 6.9 0 0 1 3.6 2.8zm1.5 5.9h-3a18 18 0 0 0 0-4h3a7 7 0 0 1 0 4z"/>
+    </symbol>
+    <symbol id="i-hdmi" viewBox="0 0 24 24">
+      <path d="M3.2 8.4h17.6v4.3L18.4 15H5.6L3.2 12.7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+      <path d="M6.6 9.9h1.6v1.9H6.6zM10 9.9h1.6v1.9H10zM13.4 9.9H15v1.9h-1.6zM16.8 9.9h1.1v1.9h-1.1z"/>
+    </symbol>
+    <!-- icônes de réglages, trait fin -->
+    <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <symbol id="r-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.6v16.8" stroke="currentColor" stroke-width="1.6"/><path d="M12 3.6a8.4 8.4 0 0 1 0 16.8z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="r-couleur" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.6" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="r-image" viewBox="0 0 24 24"><rect x="3.4" y="5.4" width="17.2" height="13.2" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.6" cy="10.2" r="1.6" fill="currentColor" stroke="none"/><path d="M4.4 17.2l4.8-4.6 3.4 3.2 3-2.6 4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-calque" viewBox="0 0 24 24"><path d="M12 3.6l8.4 4.6-8.4 4.6-8.4-4.6z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4.6 12.4l7.4 4 7.4-4M4.6 16.2l7.4 4 7.4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-eclair" viewBox="0 0 24 24"><path d="M13.4 2.8L5.6 13.4h5.2l-.8 7.8 8-10.8h-5.2z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-affiche" viewBox="0 0 24 24"><rect x="4.4" y="3.4" width="15.2" height="17.2" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M7.6 16.4h6.4M7.6 19h3.4" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-horloge" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.2V12l3.2 2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-calendrier" viewBox="0 0 24 24"><rect x="3.8" y="5" width="16.4" height="15" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.8 9.4h16.4M8 3.2v3.4M16 3.2v3.4" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-grille" viewBox="0 0 24 24"><rect x="3.6" y="3.6" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13.4" y="3.6" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="3.6" y="13.4" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="13.4" y="13.4" width="7" height="7" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-oeil" viewBox="0 0 24 24"><path d="M2.6 12S6 5.8 12 5.8 21.4 12 21.4 12 18 18.2 12 18.2 2.6 12 2.6 12z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="8.1" r="1.1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="r-reinit" viewBox="0 0 24 24"><path d="M19.4 12a7.4 7.4 0 1 1-2.3-5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M17.8 2.8v4.4h-4.4" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-ecran" viewBox="0 0 24 24"><rect x="2.8" y="4.4" width="18.4" height="12.4" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.6 20h6.8" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+      <symbol id="r-cle" viewBox="0 0 24 24"><path d="M20.4 4.4l-7.6 7.6a5 5 0 1 0 2.6 2.6l1.6-1.6 1.8 1.8 1.6-1.6-1.8-1.8 1.6-1.6z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    </g>
+  </defs>
+</svg>
+
+<div id="fond" class="fond"></div>
+<div class="fond-voile"></div>
+
+<div id="app" class="app">
+
+  <div class="scrim-haut"></div>
+
+  <!-- ============ EN-TÊTE ============ -->
+  <header class="entete" id="entete">
+    <div class="entete-gauche">
+      <img class="logo" src="assets/logos/edenwood.svg" alt="Edenwood Apple TV" width="232" height="36">
+    </div>
+
+    <nav class="onglets" id="onglets" data-nav-row="onglets" aria-label="Sections"></nav>
+
+    <div class="entete-droite">
+      <span class="etat-reseau" id="etat-reseau" title="État de la connexion">
+        <svg class="ico" aria-hidden="true"><use xlink:href="#i-reseau" href="#i-reseau"></use></svg>
+      </span>
+      <div class="horloge" id="horloge">
+        <span class="heure" id="heure">--:--</span>
+        <span class="date" id="date-jour"></span>
+      </div>
+      <button type="button" class="bouton-icone focusable" id="btn-reglages" data-action="ouvrir-reglages" aria-label="Réglages">
+        <svg class="ico" aria-hidden="true"><use xlink:href="#i-reglages" href="#i-reglages"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ CONTENU ============ -->
+  <main class="scene" id="scene">
+
+    <!-- Vue : À la une -->
+    <section class="vue" id="vue-alaune" data-vue="alaune">
+      <div class="hero" id="banniere">
+        <div class="hero-media">
+          <div class="hero-img visible" id="hero-a"></div>
+          <div class="hero-img" id="hero-b"></div>
+        </div>
+        <div class="hero-voile-g"></div>
+        <div class="hero-voile-b"></div>
+        <div class="hero-texte" id="hero-texte">
+          <p class="hero-sur"><span class="puce-demo">DÉMO</span><span id="banniere-type">Film</span></p>
+          <h1 class="hero-titre" id="banniere-titre">&nbsp;</h1>
+          <p class="hero-meta">
+            <span id="banniere-annee"></span><i></i><span id="banniere-genre"></span><i></i><span id="banniere-duree"></span>
+          </p>
+          <p class="hero-synopsis" id="banniere-synopsis"></p>
+          <div class="hero-actions" data-nav-row="banniere">
+            <button type="button" class="bouton bouton-primaire focusable" id="btn-ouvrir" data-action="hero-lire">
+              <svg class="ico" aria-hidden="true"><use xlink:href="#i-lecture" href="#i-lecture"></use></svg><span>Lire</span>
+            </button>
+            <button type="button" class="bouton bouton-discret focusable" id="btn-hero-favori" data-action="hero-favori">
+              <svg class="ico" id="btn-hero-favori-ico" aria-hidden="true"><use xlink:href="#i-etoile-vide" href="#i-etoile-vide"></use></svg>
+              <span id="btn-hero-favori-texte">Ajouter aux favoris</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="rails" id="rails-alaune"></div>
+    </section>
+
+    <section class="vue" id="vue-films" data-vue="films"></section>
+    <section class="vue" id="vue-series" data-vue="series"></section>
+    <section class="vue" id="vue-favoris" data-vue="favoris"></section>
+    <section class="vue" id="vue-apps" data-vue="apps"></section>
+    <section class="vue" id="vue-hdmi" data-vue="hdmi"></section>
+
+    <section class="vue" id="vue-reglages" data-vue="reglages">
+      <header class="vue-entete">
+        <h2 class="vue-titre">Réglages</h2>
+        <p class="vue-sous-titre">Gauche et Droite modifient une valeur · OK active · Retour quitte</p>
+      </header>
+      <div id="reglages-contenu"></div>
+    </section>
+
+  </main>
+
+  <footer class="aide" id="aide">
+    <span class="aide-item"><b>OK</b>Sélectionner</span>
+    <span class="aide-item"><b>Retour</b>Revenir</span>
+    <span class="aide-item"><b>1-8</b>Applications</span>
+    <span class="aide-note" id="aide-demo"></span>
+  </footer>
+
+</div>
+
+<!-- ============ FEUILLE MODALE ============ -->
+<div class="modale-fond" id="modale-fond" hidden>
+  <div class="modale" id="modale" role="dialog" aria-modal="true" aria-labelledby="modale-titre">
+    <div class="modale-visuel" id="modale-visuel"></div>
+    <div class="modale-corps">
+      <p class="modale-surtitre" id="modale-surtitre"></p>
+      <h3 class="modale-titre" id="modale-titre">&nbsp;</h3>
+      <p class="modale-meta" id="modale-meta"></p>
+      <p class="modale-texte" id="modale-texte"></p>
+      <div class="modale-actions" id="modale-actions" data-nav-row="modale"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden><span id="toast-texte"></span></div>
+
+<div class="demarrage" id="demarrage">
+  <img src="assets/logos/edenwood.svg" alt="" width="300" height="47">
+  <div class="demarrage-barre"><span></span></div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

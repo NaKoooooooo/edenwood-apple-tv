@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+<defs><linearGradient id="mur" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2029" stop-opacity="1"/><stop offset="1" stop-color="#120d14" stop-opacity="1"/></linearGradient><linearGradient id="tapis" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a1f26" stop-opacity="1"/><stop offset="1" stop-color="#150a0e" stop-opacity="1"/></linearGradient><radialGradient id="lampe" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffd9a0" stop-opacity="0.8"/><stop offset="1" stop-color="#ffd9a0" stop-opacity="0"/></radialGradient>
+<linearGradient id="scrim" x1="0" y1="0.42" x2="0" y2="1">
+  <stop offset="0" stop-color="#04060a" stop-opacity="0"/>
+  <stop offset="0.52" stop-color="#04060a" stop-opacity="0.62"/>
+  <stop offset="1" stop-color="#04060a" stop-opacity="0.97"/>
+</linearGradient>
+<radialGradient id="vign" cx="0.5" cy="0.44" r="0.78">
+  <stop offset="0.55" stop-color="#000000" stop-opacity="0"/>
+  <stop offset="1" stop-color="#000000" stop-opacity="0.46"/>
+</radialGradient>
+</defs>
+<rect width="600" height="900" fill="url(#mur)"/><path d="M0 0 L216 414 L0 900 Z" fill="#1d1620"/><path d="M600 0 L384 414 L600 900 Z" fill="#241b27"/><path d="M0 900 L216 540 L384 540 L600 900 Z" fill="url(#tapis)"/><rect x="33" y="273" width="66" height="306" fill="#120c12"/><rect x="501" y="273" width="66" height="306" fill="#150e15"/><rect x="96" y="304" width="51" height="238" fill="#120c12"/><rect x="453" y="304" width="51" height="238" fill="#150e15"/><rect x="159" y="335" width="36" height="171" fill="#120c12"/><rect x="405" y="335" width="36" height="171" fill="#150e15"/><circle cx="300" cy="414" r="153" fill="url(#lampe)"/><rect x="274" y="338" width="51" height="153" fill="#0a070a"/><rect x="274" y="478" width="51" height="6" fill="#ffd9a0" fill-opacity="0.85"/><rect x="316" y="411" width="3" height="11" fill="#ffd9a0" fill-opacity="0.5"/>
+<rect width="600" height="900" fill="url(#vign)"/>
+<rect width="600" height="900" fill="url(#scrim)"/>
+<g font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect x="44" y="760" width="56" height="2" fill="#ffffff" fill-opacity="0.55"/>
+  <text x="44" y="824" font-size="50" font-weight="300" letter-spacing="3"
+        fill="#ffffff" fill-opacity="0.96">ANTICHAMBRE</text>
+</g>
+</svg>

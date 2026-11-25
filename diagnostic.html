@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Edenwood — Diagnostic des touches</title>
+<meta name="viewport" content="width=1920, initial-scale=1">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#05070b; color:#f2f5f9; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; padding:40px 56px; }
+  h1 { font-size:40px; font-weight:200; letter-spacing:.5px; }
+  p.intro { color:#8e97a5; font-size:18px; margin-top:10px; line-height:1.55; max-width:1300px; }
+  .grille { display:-webkit-box; display:flex; margin-top:32px; }
+  .col { -webkit-box-flex:1; flex:1 1 0; }
+  .col + .col { margin-left:28px; }
+  .bloc { background:rgba(18,22,29,.8); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:26px; }
+  .bloc h2 { font-size:15px; letter-spacing:2px; text-transform:uppercase; color:#585f6c; margin-bottom:16px; }
+  .gros { font-size:96px; font-weight:200; line-height:1; font-variant-numeric:tabular-nums; }
+  .sous { font-size:20px; color:#a3abba; margin-top:12px; word-break:break-all; }
+  .roles { margin-top:14px; font-size:19px; }
+  .roles b { color:#5b9cff; }
+  table { width:100%; border-collapse:collapse; font-size:17px; }
+  th,td { text-align:left; padding:8px 10px; border-bottom:1px solid rgba(255,255,255,.07); }
+  th { color:#585f6c; font-weight:500; font-size:14px; letter-spacing:1.2px; text-transform:uppercase; }
+  td.code { font-variant-numeric:tabular-nums; color:#e3c07f; width:110px; }
+  .journal { max-height:430px; overflow:hidden; }
+  .infos { font-size:17px; line-height:1.9; color:#a3abba; }
+  .infos b { color:#f2f5f9; font-weight:500; }
+  .pied { margin-top:28px; color:#585f6c; font-size:16px; }
+  a { color:#5b9cff; }
+</style>
+</head>
+<body>
+
+<h1>Diagnostic des touches — Edenwood Apple TV</h1>
+<p class="intro">
+  Appuyez sur chaque touche de la télécommande, une par une. Le code renvoyé par le navigateur VIDAA s’affiche
+  ci-dessous. Notez les codes de <b>Retour</b>, <b>Exit</b>, <b>Accueil</b> et des <b>touches de couleur</b>,
+  puis reportez-les dans l’objet <code>touches</code> du fichier <code>config.js</code>.
+  Les codes des flèches (37-40) et de OK (13) sont normalement déjà corrects.
+</p>
+
+<div class="grille">
+  <div class="col">
+    <div class="bloc">
+      <h2>Dernière touche</h2>
+      <div class="gros" id="code">—</div>
+      <div class="sous" id="detail">En attente d’un appui…</div>
+      <div class="roles" id="role"></div>
+    </div>
+    <div class="bloc" style="margin-top:28px">
+      <h2>Environnement</h2>
+      <div class="infos" id="env"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="bloc journal">
+      <h2>Journal des appuis</h2>
+      <table>
+        <thead><tr><th>Code</th><th>event.key</th><th>Rôle Edenwood</th><th>Nb</th></tr></thead>
+        <tbody id="journal"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<p class="pied">
+  Pour revenir à l’interface : <a href="index.html">index.html</a> —
+  ou la touche Retour du navigateur VIDAA.
+</p>
+
+<script src="config.js"></script>
+<script>
+(function () {
+  'use strict';
+  var C = window.EDENWOOD || { touches: {} };
+  var vus = {}, ordre = [];
+
+  function roleDe(code) {
+    var t = C.touches || {}, k, i;
+    for (k in t) {
+      if (t.hasOwnProperty(k)) {
+        for (i = 0; i < t[k].length; i++) { if (t[k][i] === code) { return k; } }
+      }
+    }
+    if (code >= 49 && code <= 57) { return 'application ' + (code - 48); }
+    return null;
+  }
+
+  function maj(code, cle) {
+    document.getElementById('code').innerHTML = code;
+    document.getElementById('detail').innerHTML = 'event.key = ' + (cle ? '« ' + cle + ' »' : '(non fourni)');
+    var r = roleDe(code);
+    document.getElementById('role').innerHTML = r
+      ? 'Rôle reconnu : <b>' + r + '</b>'
+      : 'Rôle : <b style="color:#e2607a">aucun</b> — code à ajouter dans config.js';
+
+    if (!vus[code]) { vus[code] = { code: code, cle: cle || '', n: 0 }; ordre.unshift(code); }
+    vus[code].n++;
+    if (cle) { vus[code].cle = cle; }
+
+    var html = '', i, v;
+    for (i = 0; i < ordre.length && i < 18; i++) {
+      v = vus[ordre[i]];
+      var rr = roleDe(v.code);
+      html += '<tr><td class="code">' + v.code + '</td><td>' + (v.cle || '—') + '</td><td>' +
+              (rr ? rr : '<span style="color:#e2607a">—</span>') + '</td><td>' + v.n + '</td></tr>';
+    }
+    document.getElementById('journal').innerHTML = html;
+  }
+
+  function surTouche(ev) {
+    ev = ev || window.event;
+    var code = ev.keyCode || ev.which || 0;
+    if (ev.preventDefault) { ev.preventDefault(); }
+    maj(code, ev.key);
+    return false;
+  }
+
+  if (document.addEventListener) { document.addEventListener('keydown', surTouche, false); }
+  else { document.attachEvent('onkeydown', surTouche); }
+
+  var ls = 'indisponible';
+  try { window.localStorage.setItem('__t', '1'); window.localStorage.removeItem('__t'); ls = 'disponible'; }
+  catch (e) { ls = 'indisponible'; }
+
+  document.getElementById('env').innerHTML =
+    '<b>Écran :</b> ' + (window.screen ? screen.width + ' x ' + screen.height : 'inconnu') + '<br>' +
+    '<b>Fenêtre :</b> ' + window.innerWidth + ' x ' + window.innerHeight + '<br>' +
+    '<b>Pixel ratio :</b> ' + (window.devicePixelRatio || 1) + '<br>' +
+    '<b>Stockage local :</b> ' + ls + '<br>' +
+    '<b>Langue :</b> ' + (navigator.language || navigator.userLanguage || '?') + '<br>' +
+    '<b>User-Agent :</b><br>' + (navigator.userAgent || '?');
+})();
+</script>
+</body>
+</html>

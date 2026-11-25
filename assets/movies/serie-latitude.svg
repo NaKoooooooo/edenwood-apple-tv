@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900">
+<defs><linearGradient id="ciel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1a26" stop-opacity="1"/><stop offset="1" stop-color="#1d3140" stop-opacity="1"/></linearGradient>
+<linearGradient id="scrim" x1="0" y1="0.42" x2="0" y2="1">
+  <stop offset="0" stop-color="#04060a" stop-opacity="0"/>
+  <stop offset="0.52" stop-color="#04060a" stop-opacity="0.62"/>
+  <stop offset="1" stop-color="#04060a" stop-opacity="0.97"/>
+</linearGradient>
+<radialGradient id="vign" cx="0.5" cy="0.44" r="0.78">
+  <stop offset="0.55" stop-color="#000000" stop-opacity="0"/>
+  <stop offset="1" stop-color="#000000" stop-opacity="0.46"/>
+</radialGradient>
+</defs>
+<rect width="600" height="900" fill="url(#ciel)"/><path d="M0 234 Q180 202 330 234 T600 216 L600 900 L0 900 Z" fill="#20394a"/><path d="M0 234 Q180 202 330 234 T600 216" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/><path d="M0 378 Q180 346 330 378 T600 360 L600 900 L0 900 Z" fill="#2d5547"/><path d="M0 378 Q180 346 330 378 T600 360" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/><path d="M0 504 Q180 473 330 504 T600 486 L600 900 L0 900 Z" fill="#5a6b3c"/><path d="M0 504 Q180 473 330 504 T600 486" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/><path d="M0 621 Q180 590 330 621 T600 603 L600 900 L0 900 Z" fill="#7a6a3a"/><path d="M0 621 Q180 590 330 621 T600 603" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/><path d="M0 729 Q180 698 330 729 T600 711 L600 900 L0 900 Z" fill="#6b4630"/><path d="M0 729 Q180 698 330 729 T600 711" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/><path d="M0 828 Q180 796 330 828 T600 810 L600 900 L0 900 Z" fill="#2a1c16"/><path d="M0 828 Q180 796 330 828 T600 810" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/><circle cx="432" cy="198" r="108" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="2"/><ellipse cx="432" cy="198" rx="40" ry="108" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="2"/><rect x="324" y="198" width="216" height="2" fill="#ffffff" fill-opacity="0.3"/>
+<rect width="600" height="900" fill="url(#vign)"/>
+<rect width="600" height="900" fill="url(#scrim)"/>
+<g font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <rect x="44" y="760" width="56" height="2" fill="#ffffff" fill-opacity="0.55"/>
+  <text x="44" y="824" font-size="50" font-weight="300" letter-spacing="3"
+        fill="#ffffff" fill-opacity="0.96">LATITUDE</text>
+</g>
+</svg>
